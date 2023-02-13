@@ -2,52 +2,34 @@
   <div id="app">
     <bpmn-modeler
       ref="refNode"
-      :xml="xml"
-      :users="users"
-      :groups="groups"
-      :categorys="categorys"
-      :is-view="false"
-      @save="saveModeler"
+      :xmlObj="xml"
+      storeColor="red"
+      @elementClick="elementClick"
     />
   </div>
 </template>
 
 <script>
 import bpmnModeler from '../package/index'
+import xml from "../package/xml.json";
 export default {
   components: {
     bpmnModeler
   },
   data() {
     return {
-      xml: '', // 后端查询到的xml
-      users: [
-        { name: '张三', id: 'zhangsan' },
-        { name: '李四', id: 'lisi' },
-        { name: '王五', id: 'wangwu' }
-      ],
-      groups: [
-        { name: 'web组', id: 'web' },
-        { name: 'java组', id: 'java' },
-        { name: 'python组', id: 'python' }
-      ],
-      categorys: [
-        { name: 'OA', id: 'oa' },
-        { name: '财务', id: 'finance' }
-      ]
+      xml:undefined, // 后端查询到的xml
     }
   },
   mounted() {
     this.getModelDetail()
   },
   methods: {
+    elementClick(e){
+      console.log(e)
+    },
     getModelDetail() {
-      fetch('https://cdn.jsdelivr.net/gh/goldsubmarine/workflow-bpmn-modeler@master/src/Leave.bpmn20.xml')
-        .then(response => {
-          return response.text()
-        }).then(xml => {
-          this.xml = xml
-        })
+      this.xml=xml.result
     },
     saveModeler(data) {
       console.log(data)

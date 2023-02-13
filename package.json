@@ -1,8 +1,8 @@
 {
-  "name": "workflow-bpmn-modeler",
-  "version": "0.2.8",
+  "name": "workflow-bpmn-modeler-wwh",
+  "version": "1.0.4",
   "description": "基于 `vue` 和 `bpmn.io@7.0` ，实现 flowable 的 modeler 模型设计器",
-  "main": "dist/workflow-bpmn-modeler.umd.min.js",
+  "main": "dist/workflow-bpmn-modeler-wwh.umd.min.js",
   "scripts": {
     "dev": "vue-cli-service serve --open",
     "demo": "cross-env NODE_ENV=demo vue-cli-service build",
@@ -27,8 +27,8 @@
     "模型设计器"
   ],
   "author": {
-    "name": "charles",
-    "email": "997462392@qq.com"
+    "name": "wwh",
+    "email": "510306030@qq.com"
   },
   "license": "MIT",
   "bugs": {
