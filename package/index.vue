@@ -1,6 +1,5 @@
 <template>
   <div style="padding: 0" class="flow-containers">
-          <div style="background:red;height:300px;" @click="hddcli">测试点击</div>
           <div ref="canvas" class="canvas" ></div>
         </div>
 </template>
@@ -57,7 +56,7 @@ export default {
           contextPadProvider: ["value", ""], //禁用图形菜单
           bendpoints: ["value", {}], //禁用连线拖动
           zoomScroll: ["value", ""], //禁用滚动
-          move: ["value", ""], //禁用单个图形拖动
+          //move: ["value", ""], //禁用单个图形拖动
         },
       ],
       moddleExtensions: {
@@ -180,12 +179,8 @@ export default {
         }
       });
     },
-    hddcli(){
-      console.log('123')
-    },
-    handlerClickEvent(e) {
-      const { element } = e;
-      console.log(e,'e')
+    handlerClickEvent(element) {
+      console.log(element,'element')
       this.taskName = element.businessObject.name;
       if (Array.isArray(this.completeTask)) {
         this.approvalList = this.completeTask.filter(
@@ -206,13 +201,17 @@ export default {
         });
          const eventBus = this.modeler.get("eventBus");
          console.log(eventBus,'eventBus')
-        eventBus.on("element.mousedown",  function(e){
+        eventBus.on("drag.start", (e)=>{
           /*
           const { element } = e;
           if (!element.parent) return;
           if (!e || element.type !== "bpmn:UserTask") return;
           */
-         console.log(234234);
+         if(e.shape.type==='bpmn:UserTask'){
+          this.handlerClickEvent(e.shape);
+         }
+         return false;
+         
           //this.handlerClickEvent(e);
         });
         for (let i = 0; i < nodeCodes.length; i++) {
