@@ -25,6 +25,10 @@ export default {
     storeColor:{
       type:String,
       default:'#19aba8'
+    },
+    storeIngColor:{
+      type:String,
+      default:'#198FFF'
     }
   },
   data() {
@@ -232,6 +236,11 @@ export default {
       let shape = elementRegistry.get(nodeInfo.taskId);
       if (nodeInfo.taskState === 3) {
         modeling.setColor(shape, { stroke: this.storeColor });
+      }
+      else if (nodeInfo.taskState === 2) {
+        modeling.setColor(shape, { stroke: this.storeIngColor });
+      }else{
+
       }
     },
    
